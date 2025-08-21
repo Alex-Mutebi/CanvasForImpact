@@ -128,7 +128,7 @@ p {
 
 .logo img {
     height: 250px;
-    width: 150px;
+    width: auto;
     border-radius: 250px;
 }
 
