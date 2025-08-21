@@ -127,8 +127,9 @@ p {
 }
 
 .logo img {
-    height: 55px;
-    width: auto;
+    height: 150px;
+    width: 150px;
+    border-radius: 250px;
 }
 
 .logo a {
