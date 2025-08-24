@@ -16,6 +16,63 @@
     <link rel="icon" href="/assets/images/Logo.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/Logo.jpg" type="image/x-icon">
     <link href="/styles/css/all.css" rel="stylesheet">
+		<style>
+			.slider .slide {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+animation: slider 15s infinite;
+}
+
+.slider .slide:nth-child(1) {
+background-image: url('CanvasForImpact/assets/images/E.jpeg');
+animation-delay: 0s;
+}
+
+.slider .slide:nth-child(2) {
+background-image: url('CanvasForImpact/assets/images/C.jpeg');
+animation-delay: -2.5s;
+}
+
+.slider .slide:nth-child(3) {
+background-image: url('CanvasForImpact/assets/images/A.jpeg');
+animation-delay: -5s;
+}
+
+.slider .slide:nth-child(4) {
+background-image: url('CanvasForImpact/assets/images/B.jpeg');
+animation-delay: -7.5s;
+}
+
+.slider .slide:nth-child(5) {
+background-image:url('CanvasForImpact/assets/images/D.jpeg');
+animation-delay: -10s;
+}
+.slider .slide:nth-child(6) {
+background-image:url('CanvasForImpact/assets/images/E.jpeg');
+animation-delay: -12.5s;
+
+@keyframes slider {
+0%, 16%, 100% {
+	transform: translateX(0);
+	animation-timing-function: ease;
+}
+
+20% {
+	transform: translateX(-100%);
+	animation-timing-function: step-end;
+}
+
+96% {
+	transform: translateX(100%);
+	animation-timing-function: ease;
+}
+	}
+		</style>
      </head>
 <body>
 
@@ -48,6 +105,14 @@
 
     <main>
         <section id="home" class="hero-section">
+			<div class="slider">
+<div class="slide"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+			</div>
             <div class="container hero-content" data-aos="fade-up" data-aos-delay="200">
                 <h1>Environment Club<br>of Mengo <span class="text-gradient">Senior School</span></h1>
                 <p class="subtitle">A student-led body dedicated to preserving, protecting and improving our environment both within the school and in the wider community.</p>
