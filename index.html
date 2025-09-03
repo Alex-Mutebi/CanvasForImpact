@@ -75,6 +75,15 @@ animation-delay: -10s;
 	animation-timing-function: ease;
 }
 	}
+			#header-video {
+				width:100%;
+				height:700px;
+				object-fit:cover;
+				top:0;
+					left: 0;
+				z-index: -1;
+			}
+		
 		</style>
      </head>
 <body>
@@ -108,12 +117,10 @@ animation-delay: -10s;
 
     <main>
         <section id="home" class="hero-section">
-			<div class="slider">
-<div class="slide"></div>
-<div class="slide"></div>
-<div class="slide"></div>
-<div class="slide"></div>
-<div class="slide"></div>
+	<div class="header" id="header-video">
+		<video autoplay muted loop id="header-video">
+			<source src="/assets/images/Header.mp4"type="video/mp4> Your browser does not support the video tag.
+				</video>
 			</div>
             <div class="container hero-content" data-aos="fade-up" data-aos-delay="200">
                 <h1>Environment Club<br>of Mengo <span class="text-gradient">Senior School</span></h1>
