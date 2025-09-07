@@ -1,0 +1,98 @@
+npm install
+// Updated folder structure with Navigation Bar integrated across all pages
+
+// package.json { "name": "environment-club-awareness", "version": "1.0.0", "scripts": { "dev": "next dev", "build": "next build", "start": "next start" }, "dependencies": { "next": "13.5.2", "react": "18.2.0", "react-dom": "18.2.0", "tailwindcss": "3.5.2", "autoprefixer": "10.4.0", "postcss": "8.4.0" } }
+
+// tailwind.config.js module.exports = { content: ["./pages//*.{js,jsx}", "./components//*.{js,jsx}"], theme: { extend: {}, }, plugins: [], }
+
+// styles/globals.css @tailwind base; @tailwind components; @tailwind utilities;
+
+body { @apply bg-green-50 text-green-900 font-sans; }
+
+// components/Navbar.js import Link from 'next/link'; export default function Navbar() { return ( <nav className="bg-green-700 text-white p-4"> <div className="max-w-6xl mx-auto flex justify-between items-center"> <Link href="/" className="text-2xl font-bold">🌍 EnvClub Awareness</Link> <div className="flex gap-4"> <Link href="/learn">Learning Hub</Link> <Link href="/blog">Blog</Link> <Link href="/quiz">Quiz</Link> <Link href="/about">About</Link> </div> </div> </nav> ); }
+
+// pages/_app.js import '../styles/globals.css'; import Navbar from '../components/Navbar'; export default function App({ Component, pageProps }) { return ( <> <Navbar /> <Component {...pageProps} /> </> ); }
+
+// pages/index.js (Home Page) import Link from 'next/link'; export default function Home() { return ( <div className="min-h-screen"> <section className="flex flex-col items-center justify-center text-center py-20 px-6"> <h1 className="text-5xl font-bold text-green-800">🌍 Environment Club Awareness</h1> <p className="mt-4 text-lg max-w-2xl"> Learn, Act, and Inspire! Spread awareness about environmental conservation, sustainability, and climate action. </p> <div className="mt-6 flex gap-4"> <Link href="/learn" className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-lg">Learning Hub</Link> <Link href="/quiz" className="bg-white border border-green-700 text-green-700 px-6 py-3 rounded-lg">Take a Quiz</Link> </div> </section>
+
+<section className="grid md:grid-cols-3 gap-6 px-6 py-10 max-w-6xl mx-auto">
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">📚 Learning Hub</h2>
+      <p className="mt-2">Read educational resources about climate change, sustainability, and biodiversity.</p>
+    </div>
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">📝 Blog</h2>
+      <p className="mt-2">Stay updated with news, student articles, and environmental tips.</p>
+    </div>
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">🧩 Quiz</h2>
+      <p className="mt-2">Challenge yourself with fun quizzes to test your knowledge of the environment.</p>
+    </div>
+  </section>
+</div>
+
+); }
+
+// pages/learn.js export default function Learn() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">📚 Learning Hub</h1> <div className="space-y-4"> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Climate Change</h2> <p>Learn about causes, effects, and solutions to climate change.</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Sustainability</h2> <p>Explore ways to live sustainably and reduce your ecological footprint.</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Biodiversity</h2> <p>Discover the importance of protecting animals, plants, and ecosystems.</p> </div> </div> </div> ); }
+
+// pages/blog.js export default function Blog() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">📝 Blog & News</h1> <div className="space-y-4"> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Tree Planting Drive</h2> <p>Our students planted 500 trees last month. Learn how you can join next time!</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Recycling Tips</h2> <p>Easy ways to recycle at home and in school.</p> </div> </div> </div> ); }
+
+// pages/quiz.js import { useState } from 'react'; const questions = [ { q: 'Which gas is the main cause of global warming?', options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen'], answer: 1 }, { q: 'Which of these is renewable?', options: ['Coal', 'Solar', 'Petrol'], answer: 1 }, ]; export default function Quiz() { const [current, setCurrent] = useState(0); const [score, setScore] = useState(0); const [finished, setFinished] = useState(false);
+
+const handleAnswer = (index) => { if (index === questions[current].answer) setScore(score + 1); if (current + 1 < questions.length) setCurrent(current + 1); else setFinished(true); };
+
+if (finished) return <div className="min-h-screen flex flex-col items-center justify-center">🎉 You scored {score} / {questions.length}</div>;
+
+return ( <div className="min-h-screen flex flex-col items-center justify-center px-6"> <h1 className="text-3xl font-bold mb-6">🧩 Quiz Time!</h1> <div className="p-6 bg-white rounded-lg shadow max-w-xl w-full"> <h2 className="text-xl font-semibold mb-4">{questions[current].q}</h2> <div className="flex flex-col gap-3"> {questions[current].options.map((opt, idx) => ( <button key={idx} className="bg-green-700 text-white px-4 py-2 rounded" onClick={() => handleAnswer(idx)}>{opt}</button> ))} </div> </div> </div> ); }
+
+// pages/about.js export default function About() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">👥 About Us</h1> <p> The Environment Club aims to educate and inspire students to take action for a greener, sustainable future. We focus on awareness, projects, and community engagement. </p> </div> ); }
+
+
+// Updated folder structure with Navigation Bar integrated across all pages
+
+// package.json { "name": "environment-club-awareness", "version": "1.0.0", "scripts": { "dev": "next dev", "build": "next build", "start": "next start" }, "dependencies": { "next": "13.5.2", "react": "18.2.0", "react-dom": "18.2.0", "tailwindcss": "3.5.2", "autoprefixer": "10.4.0", "postcss": "8.4.0" } }
+
+// tailwind.config.js module.exports = { content: ["./pages//*.{js,jsx}", "./components//*.{js,jsx}"], theme: { extend: {}, }, plugins: [], }
+
+// styles/globals.css @tailwind base; @tailwind components; @tailwind utilities;
+
+body { @apply bg-green-50 text-green-900 font-sans; }
+
+// components/Navbar.js import Link from 'next/link'; export default function Navbar() { return ( <nav className="bg-green-700 text-white p-4"> <div className="max-w-6xl mx-auto flex justify-between items-center"> <Link href="/" className="text-2xl font-bold">🌍 EnvClub Awareness</Link> <div className="flex gap-4"> <Link href="/learn">Learning Hub</Link> <Link href="/blog">Blog</Link> <Link href="/quiz">Quiz</Link> <Link href="/about">About</Link> </div> </div> </nav> ); }
+
+// pages/_app.js import '../styles/globals.css'; import Navbar from '../components/Navbar'; export default function App({ Component, pageProps }) { return ( <> <Navbar /> <Component {...pageProps} /> </> ); }
+
+// pages/index.js (Home Page) import Link from 'next/link'; export default function Home() { return ( <div className="min-h-screen"> <section className="flex flex-col items-center justify-center text-center py-20 px-6"> <h1 className="text-5xl font-bold text-green-800">🌍 Environment Club Awareness</h1> <p className="mt-4 text-lg max-w-2xl"> Learn, Act, and Inspire! Spread awareness about environmental conservation, sustainability, and climate action. </p> <div className="mt-6 flex gap-4"> <Link href="/learn" className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-lg">Learning Hub</Link> <Link href="/quiz" className="bg-white border border-green-700 text-green-700 px-6 py-3 rounded-lg">Take a Quiz</Link> </div> </section>
+
+<section className="grid md:grid-cols-3 gap-6 px-6 py-10 max-w-6xl mx-auto">
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">📚 Learning Hub</h2>
+      <p className="mt-2">Read educational resources about climate change, sustainability, and biodiversity.</p>
+    </div>
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">📝 Blog</h2>
+      <p className="mt-2">Stay updated with news, student articles, and environmental tips.</p>
+    </div>
+    <div className="p-6 bg-white rounded-2xl shadow">
+      <h2 className="text-xl font-semibold">🧩 Quiz</h2>
+      <p className="mt-2">Challenge yourself with fun quizzes to test your knowledge of the environment.</p>
+    </div>
+  </section>
+</div>
+
+); }
+
+// pages/learn.js export default function Learn() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">📚 Learning Hub</h1> <div className="space-y-4"> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Climate Change</h2> <p>Learn about causes, effects, and solutions to climate change.</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Sustainability</h2> <p>Explore ways to live sustainably and reduce your ecological footprint.</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Biodiversity</h2> <p>Discover the importance of protecting animals, plants, and ecosystems.</p> </div> </div> </div> ); }
+
+// pages/blog.js export default function Blog() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">📝 Blog & News</h1> <div className="space-y-4"> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Tree Planting Drive</h2> <p>Our students planted 500 trees last month. Learn how you can join next time!</p> </div> <div className="p-4 bg-white rounded-lg shadow"> <h2 className="text-xl font-semibold">Recycling Tips</h2> <p>Easy ways to recycle at home and in school.</p> </div> </div> </div> ); }
+
+// pages/quiz.js import { useState } from 'react'; const questions = [ { q: 'Which gas is the main cause of global warming?', options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen'], answer: 1 }, { q: 'Which of these is renewable?', options: ['Coal', 'Solar', 'Petrol'], answer: 1 }, ]; export default function Quiz() { const [current, setCurrent] = useState(0); const [score, setScore] = useState(0); const [finished, setFinished] = useState(false);
+
+const handleAnswer = (index) => { if (index === questions[current].answer) setScore(score + 1); if (current + 1 < questions.length) setCurrent(current + 1); else setFinished(true); };
+
+if (finished) return <div className="min-h-screen flex flex-col items-center justify-center">🎉 You scored {score} / {questions.length}</div>;
+
+return ( <div className="min-h-screen flex flex-col items-center justify-center px-6"> <h1 className="text-3xl font-bold mb-6">🧩 Quiz Time!</h1> <div className="p-6 bg-white rounded-lg shadow max-w-xl w-full"> <h2 className="text-xl font-semibold mb-4">{questions[current].q}</h2> <div className="flex flex-col gap-3"> {questions[current].options.map((opt, idx) => ( <button key={idx} className="bg-green-700 text-white px-4 py-2 rounded" onClick={() => handleAnswer(idx)}>{opt}</button> ))} </div> </div> </div> ); }
+
+// pages/about.js export default function About() { return ( <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto"> <h1 className="text-3xl font-bold mb-6">👥 About Us</h1> <p> The Environment Club aims to educate and inspire students to take action for a greener, sustainable future. We focus on awareness, projects, and community engagement. </p> </div> ); }
+
